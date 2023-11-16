@@ -66,10 +66,10 @@ const SideBar = () => {
                         <Image
                             fill
                             alt="Logo"
-                            src="/next.svg"
+                            src="/logo.png"
                         />
                     </div>
-                    <h1 className={cn("text-2xl font-bold", montserrat.className)}>Logo</h1>
+                    <h1 className={cn("text-2xl font-bold", montserrat.className)}>One-AI</h1>
                 </Link>
                 <div className="space-y-1">
                     {routes.map((route) => (
