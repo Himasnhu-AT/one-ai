@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader } from "./ui/dialog";
 import { useProModel } from "@/hooks/use-pro-model";
@@ -8,6 +9,8 @@ import { Check, Code, Image, MessageSquare, Music, Video, Zap } from 'lucide-rea
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { set } from "zod";
 
 
 const tools = [
@@ -47,6 +50,24 @@ const tools = [
 
 export const ProModal = () => {
     const proModal = useProModel();
+    const [loading, setLoading] = useState(false);
+
+
+    const onSubscribe = async () => {
+        try {
+            setLoading(true);
+            const response = axios.get("/api/stripe");
+
+            window.location.href = (await response).data.url;
+
+        } catch (error) {
+            console.log(error, "Stripe Client error");
+        } finally {
+            setLoading(false);
+        }
+
+    }
+
 
     return (
         <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
@@ -81,6 +102,7 @@ export const ProModal = () => {
                 </DialogHeader>
                 <DialogFooter>
                     <Button
+                        onClick={onSubscribe}
                         size={"lg"}
                         variant={"premium"}
                         className="w-full"
