@@ -41,6 +41,9 @@ export const LandingHero = () => {
             <div className="text-zinc-400 text-xs md:text-sm font-normal">
                 No credit card required.
             </div>
+            <div className=" mt-10 text-sm md:text-xl font-light text-zinc-400">
+                For Cost Concern, the API for using tools are shut down. Use Github link to host you project locally.
+            </div>
         </div>
     );
 };
