@@ -18,6 +18,7 @@ import { formSchema } from "./constants";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
 import { useProModel } from "@/hooks/use-pro-model";
+import toast from "react-hot-toast";
 
 const MusicPage = () => {
     const proModal = useProModel();
@@ -45,7 +46,7 @@ const MusicPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong.");
+                toast.error("Something went wrong.");
             }
         } finally {
             router.refresh();

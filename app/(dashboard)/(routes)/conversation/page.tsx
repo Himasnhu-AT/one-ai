@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
+import { toast } from "react-hot-toast";
 
 import { Heading } from "@/components/heading";
 import { Button } from "@/components/ui/button";
@@ -50,7 +51,7 @@ const ConversationPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong.");
+                toast.error("Something went wrong.");
             }
         } finally {
             router.refresh();

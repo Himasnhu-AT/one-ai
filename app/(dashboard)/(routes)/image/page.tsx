@@ -20,6 +20,7 @@ import { amountOption, formSchema, resolutionOption } from "./constants";
 import { Empty } from "@/components/empty";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useProModel } from "@/hooks/use-pro-model";
+import toast from "react-hot-toast";
 
 const PhotoPage = () => {
     const proModal = useProModel();
@@ -50,7 +51,7 @@ const PhotoPage = () => {
             if (error?.response?.status === 403) {
                 proModal.onOpen();
             } else {
-                console.log("Something went wrong.");
+                toast.error("Something went wrong.");
             }
         } finally {
             router.refresh();
