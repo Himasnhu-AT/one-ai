@@ -22,8 +22,10 @@ import { UserAvatar } from "@/components/user-avatar";
 
 import { formSchema } from "./constants";
 import { Empty } from "@/components/empty";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const CodePage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -47,7 +49,7 @@ const CodePage = () => {
             form.reset();
         } catch (error: any) {
             if (error?.response?.status === 403) {
-
+                proModal.onOpen();
             } else {
                 console.log("Something went wrong.");
             }

@@ -17,8 +17,10 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { formSchema } from "./constants";
 import { Loader } from "@/components/loader";
 import { Empty } from "@/components/empty";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const MusicPage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [music, setMusic] = useState<string>();
 
@@ -41,7 +43,7 @@ const MusicPage = () => {
             form.reset();
         } catch (error: any) {
             if (error?.response?.status === 403) {
-                console.log("You have reached your API limit.");
+                proModal.onOpen();
             } else {
                 console.log("Something went wrong.");
             }

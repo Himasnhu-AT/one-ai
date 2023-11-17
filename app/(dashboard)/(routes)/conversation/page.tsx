@@ -21,8 +21,10 @@ import { Loader } from "@/components/loader";
 import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { Empty } from "@/components/empty";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const ConversationPage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -46,7 +48,7 @@ const ConversationPage = () => {
             form.reset();
         } catch (error: any) {
             if (error?.response?.status === 403) {
-                console.log("You have reached your API limit.");
+                proModal.onOpen();
             } else {
                 console.log("Something went wrong.");
             }

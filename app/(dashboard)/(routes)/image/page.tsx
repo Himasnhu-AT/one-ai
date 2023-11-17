@@ -19,8 +19,10 @@ import { Loader } from "@/components/loader";
 import { amountOption, formSchema, resolutionOption } from "./constants";
 import { Empty } from "@/components/empty";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useProModel } from "@/hooks/use-pro-model";
 
 const PhotoPage = () => {
+    const proModal = useProModel();
     const router = useRouter();
     const [photos, setPhotos] = useState<string[]>([]);
 
@@ -46,6 +48,7 @@ const PhotoPage = () => {
             setPhotos(urls);
         } catch (error: any) {
             if (error?.response?.status === 403) {
+                proModal.onOpen();
             } else {
                 console.log("Something went wrong.");
             }
