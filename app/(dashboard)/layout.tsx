@@ -1,16 +1,18 @@
 import Navbar from "@/components/navbar";
 import SideBar from "@/components/sidebar";
-import { Sidebar } from "lucide-react";
+import { getApiLimit } from "@/lib/api-limit";
 
-const DashBoardLayout = ({
+const DashBoardLayout = async ({
     children
 }: {
     children: React.ReactNode;
 }) => {
+    const apiLimitCount = await getApiLimit();
+
     return (
         <div className='h-full relative'>
             <div className='hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80] bg-gray-900'>
-                <SideBar />
+                <SideBar apiLimitCount={apiLimitCount} />
             </div>
 
             <main className='md:pl-72'>
