@@ -42,7 +42,7 @@ export async function POST(req: Request) {
                     subscription.current_period_end * 1000
                 ),
             },
-        });
+        })
     }
 
     if (event.type === "invoice.payment_succeeded") {
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
                     subscription.current_period_end * 1000
                 ),
             },
-        });
+        })
     }
 
     return new NextResponse(null, { status: 200 })
